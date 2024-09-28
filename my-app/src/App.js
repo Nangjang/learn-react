@@ -14,27 +14,31 @@ function GithubUser({ login, bio, avatar }) {
 
 function App() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Fetch GitHub user data on component mount
   useEffect(() => {
+    setLoading(true);
     fetch(`https://api.github.com/users/Nangjang`)
       .then((response) => response.json())
-      .then(setData);
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
   }, []);
 
-  // Render GitHub user information if data is available
-  if (data) {
-    return (
-      <GithubUser
-        login={data.login}
-        bio={data.bio}
-        avatar={data.avatar_url}
-      />
-    );
-  }
+  if (loading) return <h1>Loading content...</h1>;
+  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (!data) return null;
 
-  // Render loading message if data is not yet available
-  return <h1>Loading...</h1>;
+  // Render GitHub user information if data is available
+  return (
+    <GithubUser
+      login={data.login}
+      bio={data.bio}
+      avatar={data.avatar_url}
+    />
+  );
 }
 
 export default App;
