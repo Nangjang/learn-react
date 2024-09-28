@@ -1,23 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+const [game, setGame] = useState('Mario');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My favourite game is {game}.</h1>
+      <button onClick={() => setGame('Zelda')}>Change Game</button>
+      <button onClick={() => setGame('Mario')}>Reset Game</button>
     </div>
   );
 }
