@@ -17,36 +17,50 @@
       // Initialize React
       const rootElement = document.getElementById("root");
 
+      // Render the App component using createRoot
+      const root = ReactDOM.createRoot(rootElement);
+
       // Header component
-      function Header() {
+      function Header(props) {
         return (
           <header>
-            <h1>Atomic Habits By James Clear</h1>
+            <h1 style={{ color: 'blue', textAlign: 'center' }}>Atomic Habits By {props.author}</h1>
           </header>
         );
       }
 
       // Main component
-      function Main() {
+      function Main(props) {
         return (
-          <p>
-            Atomic Habits is a book by James Clear that talks about how small habits can lead to remarkable results.
-          </p>
+          <main>
+            <p style={{ fontSize: '16px', lineHeight: '1.5', margin: '20px' }}>
+              Atomic Habits is a {props.noun} by James Clear that talks about how small habits can lead to remarkable results.
+            </p>
+          </main>
+        );
+      }
+
+      // Footer component
+      function Footer(props) {
+        return (
+          <footer style={{ textAlign: 'center', marginTop: '20px' }}>
+            <p>&copy; {props.year} Atomic Habits. All rights reserved.</p>
+          </footer>
         );
       }
 
       // App component
       function App() {
         return (
-          <div>
-            <Header />
-            <Main />
+          <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
+            <Header author="James Clear" />
+            <Main noun="book" />
+            <Footer year={new Date().getFullYear()} />
           </div>
         );
       }
 
-      // Render the App component
-      ReactDOM.render(<App />, rootElement);
+      root.render(<App />);
     </script>
   </body>
 </html>
