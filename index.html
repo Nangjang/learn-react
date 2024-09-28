@@ -14,11 +14,10 @@
     <script type="text/javascript">
       // Initialize React
       const rootElement = document.getElementById("root");
-      // Render a simple React component without JSX
-      ReactDOM.render(
-        React.createElement('h1', null, 'Getting Started with React!'),
-        rootElement
-      );
+      // Create a heading element
+      const heading = React.createElement('h1', null, 'Getting Started with React!');
+      // Render the heading element
+      ReactDOM.render(heading, rootElement);
     </script>
   </body>
 </html>
