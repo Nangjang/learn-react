@@ -1,52 +1,40 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// Custom hook to manage input state
-function useInput(initialValue) {
-  const [value, setValue] = useState(initialValue);
-  return [
-    {
-      value,
-      onChange: (e) => setValue(e.target.value)
-    },
-    () => setValue(initialValue)
-  ];
+// Component to display GitHub user information
+function GithubUser({ login, bio, avatar }) {
+  return (
+    <div>
+      <img src={avatar} height={200} alt={login} />
+      <h1>{login}</h1>
+      <p>{bio}</p>
+    </div>
+  );
 }
 
 function App() {
-  // Using custom hook for title input
-  const [titleProps, resetTitle] = useInput("");
-  // Using useState for color input
-  const [color, setColor] = useState("#000000");
+  const [data, setData] = useState(null);
 
-  // Function to handle form submission
-  const submit = (e) => {
-    e.preventDefault();
-    // Display an alert with the input values
-    alert(`${titleProps.value}, ${color}`);
-    // Reset the input fields
-    resetTitle();
-    setColor("#000000");
-  };
+  // Fetch GitHub user data on component mount
+  useEffect(() => {
+    fetch(`https://api.github.com/users/Nangjang`)
+      .then((response) => response.json())
+      .then(setData);
+  }, []);
 
-  return (
-    <form onSubmit={submit}>
-      {/* Text input for color title */}
-      <input
-        {...titleProps}
-        type="text"
-        placeholder="Color title..."
+  // Render GitHub user information if data is available
+  if (data) {
+    return (
+      <GithubUser
+        login={data.login}
+        bio={data.bio}
+        avatar={data.avatar_url}
       />
-      {/* Color input */}
-      <input
-        value={color}
-        type="color"
-        onChange={(e) => setColor(e.target.value)}
-      />
-      {/* Submit button */}
-      <button>ADD</button>
-    </form>
-  );
+    );
+  }
+
+  // Render loading message if data is not yet available
+  return <h1>Loading...</h1>;
 }
 
 export default App;
