@@ -14,10 +14,16 @@
     <script type="text/javascript">
       // Initialize React
       const rootElement = document.getElementById("root");
-      // Create a heading element
-      const heading = React.createElement('h1', null, 'Getting Started with React!');
-      // Render the heading element
-      ReactDOM.render(heading, rootElement);
+      // Create a list element with list items
+      const list = React.createElement(
+        'ul',
+        { style: { color: "purple" } },
+        React.createElement('li', null, 'Item 1'),
+        React.createElement('li', null, 'Item 2'),
+        React.createElement('li', null, 'Item 3')
+      );
+      // Render the list element
+      ReactDOM.render(list, rootElement);
     </script>
   </body>
 </html>
