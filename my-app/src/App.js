@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-const [game, setGame] = useState('Mario');
+  const [game, setGame] = useState('Mario');
+
+  useEffect(() => {
+    console.log(`The game is ${game}.`);
+  }, [game]);
 
   return (
     <div className="App">
