@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React ⚛️</title>
+    <!-- Latest React and ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  </head>
+  <body>
+    <!-- React root element -->
+    <div id="root"></div>
+    <script type="text/javascript">
+      // Initialize React
+      const rootElement = document.getElementById("root");
+      // Render a simple React component without JSX
+      ReactDOM.render(
+        React.createElement('h1', null, 'Getting Started with React!'),
+        rootElement
+      );
+    </script>
+  </body>
+</html>
