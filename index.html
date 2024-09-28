@@ -5,31 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React ⚛️</title>
     <!-- Latest React and ReactDOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin defer></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin defer></script>
     <!-- Babel for JSX transpilation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin defer></script>
   </head>
   <body>
     <!-- React root element -->
     <div id="root"></div>
-    <script type="text/babel">
+    <script type="text/babel" defer>
       // Initialize React
       const rootElement = document.getElementById("root");
-      // Create constants for each item
-      const item1 = 'Item 1';
-      const item2 = 'Item 2';
-      const item3 = 'Item 3';
-      // Create a list element with list items using JSX
-      const list = (
-        <ul style={{ color: "purple" }}>
-          <li>{item1}</li>
-          <li>{item2.toUpperCase()}</li>
-          <li>{item3.length}</li>
-        </ul>
-      );
-      // Render the list element
-      ReactDOM.render(list, rootElement);
+
+      // Header component
+      function Header() {
+        return (
+          <header>
+            <h1>Atomic Habits By James Clear</h1>
+          </header>
+        );
+      }
+
+      // Main component
+      function Main() {
+        return (
+          <p>
+            Atomic Habits is a book by James Clear that talks about how small habits can lead to remarkable results.
+          </p>
+        );
+      }
+
+      // App component
+      function App() {
+        return (
+          <div>
+            <Header />
+            <Main />
+          </div>
+        );
+      }
+
+      // Render the App component
+      ReactDOM.render(<App />, rootElement);
     </script>
   </body>
 </html>
