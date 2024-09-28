@@ -20,6 +20,8 @@
       #root {
         width: 100%;
         max-width: 800px;
+        font-family: Arial, sans-serif;
+        padding: 20px;
       }
     </style>
   </head>
@@ -87,11 +89,11 @@
       // App component
       function App() {
         return (
-          <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
+          <React.Fragment>
             <Header author="James Clear" />
             <MainContent noun="book" habitMethods={habitMethodObjects} />
             <Footer year={new Date().getFullYear()} />
-          </div>
+          </React.Fragment>
         );
       }
 
