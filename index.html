@@ -9,6 +9,19 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin defer></script>
     <!-- Babel for JSX transpilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin defer></script>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      #root {
+        width: 100%;
+        max-width: 800px;
+      }
+    </style>
   </head>
   <body>
     <!-- React root element -->
@@ -24,18 +37,28 @@
       function Header(props) {
         return (
           <header>
-            <h1 style={{ color: 'blue', textAlign: 'center' }}>Atomic Habits By {props.author}</h1>
+            <h1 style={{ color: 'blue', textAlign: 'center' }}>
+              Atomic Habits By {props.author}
+            </h1>
           </header>
         );
       }
 
       // Main component
-      function Main(props) {
+      function MainContent(props) {
         return (
-          <main>
+          <main style={{ textAlign: 'center' }}>
+            <img src="./images/Atomic_Habits.jpg" alt="Atomic Habits" style={{ width: '25%' }} />
             <p style={{ fontSize: '16px', lineHeight: '1.5', margin: '20px' }}>
               Atomic Habits is a {props.noun} by James Clear that talks about how small habits can lead to remarkable results.
             </p>
+            <p>The four key components of habit building are: Cue, Craving, Response, Reward.</p>
+            <p>James Clear suggests the following methods to build a habit:</p>
+            <ul style={{ listStyleType: 'none', padding: 0 }}>
+              {props.habitMethods.map((method) => (
+                <li key={method.id}>{method.name}</li>
+              ))}
+            </ul>
           </main>
         );
       }
@@ -49,12 +72,24 @@
         );
       }
 
+      const habitMethods = [
+        "Make it obvious",
+        "Make it attractive",
+        "Make it easy",
+        "Make it satisfying"
+      ];
+
+      const habitMethodObjects = habitMethods.map((name, index) => ({
+        id: index,
+        name: name
+      }));
+
       // App component
       function App() {
         return (
           <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
             <Header author="James Clear" />
-            <Main noun="book" />
+            <MainContent noun="book" habitMethods={habitMethodObjects} />
             <Footer year={new Date().getFullYear()} />
           </div>
         );
