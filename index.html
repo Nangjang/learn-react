@@ -7,20 +7,26 @@
     <!-- Latest React and ReactDOM -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel for JSX transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <!-- React root element -->
     <div id="root"></div>
-    <script type="text/javascript">
+    <script type="text/babel">
       // Initialize React
       const rootElement = document.getElementById("root");
-      // Create a list element with list items
-      const list = React.createElement(
-        'ul',
-        { style: { color: "purple" } },
-        React.createElement('li', null, 'Item 1'),
-        React.createElement('li', null, 'Item 2'),
-        React.createElement('li', null, 'Item 3')
+      // Create constants for each item
+      const item1 = 'Item 1';
+      const item2 = 'Item 2';
+      const item3 = 'Item 3';
+      // Create a list element with list items using JSX
+      const list = (
+        <ul style={{ color: "purple" }}>
+          <li>{item1}</li>
+          <li>{item2.toUpperCase()}</li>
+          <li>{item3.length}</li>
+        </ul>
       );
       // Render the list element
       ReactDOM.render(list, rootElement);
