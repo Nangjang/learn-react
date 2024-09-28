@@ -1,22 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-import { useReducer } from 'react';
+import "./App.css";
+import { useRef } from "react";
 
 function App() {
-  // useReducer hook to manage the checkbox state directly with a function
-  const [checked, toggleChecked] = useReducer(checked => !checked, false);
+  // useRef hooks to reference the input elements
+  const txtTitle = useRef();
+  const hexColor = useRef();
+
+  // Function to handle form submission
+  const submit = (e) => {
+    e.preventDefault();
+    // Get the values from the input elements
+    const title = txtTitle.current.value;
+    const color = hexColor.current.value;
+    // Display an alert with the input values
+    alert(`${title}, ${color}`);
+    // Clear the input fields
+    txtTitle.current.value = "";
+    hexColor.current.value = "";
+  };
 
   return (
-    <div className="App">
-      {/* Checkbox input */}
+    <form onSubmit={submit}>
+      {/* Text input for color title */}
       <input
-        type="checkbox"
-        value={checked}
-        onChange={toggleChecked}
+        ref={txtTitle}
+        type="text"
+        placeholder="Color title..."
       />
-      {/* Label displaying the checkbox state */}
-      <label>{checked ? 'Checked' : 'Not Checked'}</label>
-    </div>
+      {/* Color input */}
+      <input ref={hexColor} type="color" />
+      {/* Submit button */}
+      <button>ADD</button>
+    </form>
   );
 }
 
