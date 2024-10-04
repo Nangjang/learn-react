@@ -24,6 +24,14 @@ function List({ data, renderItem, renderEmpty }) {
   );
 }
 
+function About() {
+  return <h1>About Us</h1>
+}
+
+function Contact() {
+  return <h1>Contact Us</h1>
+}
+
 function App() {
   // Render the List component with tahoe_peaks data
   return (
@@ -40,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export { App, About, Contact };
