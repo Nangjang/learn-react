@@ -1,5 +1,5 @@
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 // Array of Tahoe peaks with their elevations
 const tahoe_peaks = [
@@ -23,6 +23,9 @@ function Nav() {
         <li>
           <Link to="/contact">Contact Us</Link>
         </li>
+        <li>
+          <Link to="/about/history">Our History</Link>
+        </li>
       </ul>
     </nav>
   );
@@ -44,16 +47,29 @@ function List({ data, renderItem, renderEmpty }) {
   );
 }
 
+// About component to render the About Us page
 function About() {
   return (
     <>
       <Nav />
       <h1>About Us</h1>
       <p>Learn more about us.</p>
+      <Outlet /> {/* Outlet for nested routes */}
     </>
   );
 }
 
+// History component to render the History page
+function History() {
+  return (
+    <>
+      <h1>Our History</h1>
+      <p>Learn about our history.</p>
+    </>
+  );
+}
+
+// Contact component to render the Contact Us page
 function Contact() {
   return (
     <>
@@ -64,8 +80,8 @@ function Contact() {
   );
 }
 
+// App component to render the main application
 function App() {
-  // Render the List component with tahoe_peaks data
   return (
     <>
       <Nav />
@@ -83,4 +99,4 @@ function App() {
   );
 }
 
-export { App, About, Contact };
+export { App, About, Contact, History };
