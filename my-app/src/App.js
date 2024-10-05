@@ -1,4 +1,5 @@
 import "./App.css";
+import { Link } from "react-router-dom";
 
 // Array of Tahoe peaks with their elevations
 const tahoe_peaks = [
@@ -7,6 +8,25 @@ const tahoe_peaks = [
   { name: "Pyramid", elevation: 9983 },
   { name: "Tallac", elevation: 9735 }
 ];
+
+// Navigation component to render the navigation menu
+function Nav() {
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About Us</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact Us</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 
 // List component to render a list of items
 function List({ data, renderItem, renderEmpty }) {
@@ -25,26 +45,41 @@ function List({ data, renderItem, renderEmpty }) {
 }
 
 function About() {
-  return <h1>About Us</h1>
+  return (
+    <>
+      <Nav />
+      <h1>About Us</h1>
+      <p>Learn more about us.</p>
+    </>
+  );
 }
 
 function Contact() {
-  return <h1>Contact Us</h1>
+  return (
+    <>
+      <Nav />
+      <h1>Contact Us</h1>
+      <p>Get in touch with us.</p>
+    </>
+  );
 }
 
 function App() {
   // Render the List component with tahoe_peaks data
   return (
-    <List
-      data={tahoe_peaks}
-      renderEmpty={() => <p>This list is empty.</p>}
-      renderItem={(item) => (
-        <>
-          <h2>{item.name}</h2>
-          <p>{item.elevation} ft.</p>
-        </>
-      )}
-    />
+    <>
+      <Nav />
+      <List
+        data={tahoe_peaks}
+        renderEmpty={() => <p>This list is empty.</p>}
+        renderItem={(item) => (
+          <>
+            <h2>{item.name}</h2>
+            <p>{item.elevation} ft.</p>
+          </>
+        )}
+      />
+    </>
   );
 }
 
